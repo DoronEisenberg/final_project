@@ -1,0 +1,46 @@
+.bigbox {
+    display: inline-block;
+    height: 200px;
+    width: 200px;
+}
+
+#gray {
+    background-color: gray; 
+}
+
+#black {
+    background-color: black;
+}
+
+#blue {
+    background-color: blue;
+}
+
+#purple {
+    background-color: purple;
+}
+
+.smallbox {
+    height: 100px;
+    width: 100px;
+}
+
+#orange {
+    background-color: orange;
+    float: right; 
+}
+
+#yellow {
+    background-color: yellow;
+    float: right; 
+    margin-top: 100px;
+}
+
+#green {
+    background-color: green;
+    margin-top: 100px;
+}
+
+#pink {
+    background-color: pink;
+}

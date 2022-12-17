@@ -36,27 +36,88 @@
         transform: rotate(360deg);
     }
 }
-
+////////////////@extend
+///
 .ColorKeyboard {
     height: 200px;
     width: 200px;
 }
 
-// .flash {
-// }
+.keyboardWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    // width: 400px;
+}
 
-.palevioletred {
-    background-color: palevioletred;
+.startButton {
+    position: absolute;
+    background-color: #82a8c0;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+.score {
+    position: absolute;
+
+    height: 50px;
+    width: 50px;
+    background-color: #282c34;
+    border-radius: 50%;
+    line-height: 100px;
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.lost {
+    position: absolute;
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+    line-height: 50px;
+    font-size: 30px;
+    justify-content: center;
+}
+
+.flash.flash {
+    border: 3px solid white;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .purple {
     background-color: purple;
+    border-radius: 50%;
+    &.flash {
+        background-color: rgb(186, 120, 172);
+        border-radius: 50%;
+    }
+}
+
+.palevioletred {
+    background-color: rgb(216, 112, 147);
+    border-radius: 100%;
+    &.flash {
+        background-color: rgb(194, 157, 186);
+        border-radius: 100%;
+    }
 }
 
 .turquoise {
-    background-color: turquoise;
+    background-color: rgb(64, 224, 208);
+    border-radius: 50%;
+    &.flash {
+        background-color: rgb(125, 155, 148);
+        border-radius: 50%;
+    }
 }
 
 .yellowgreen {
-    background-color: yellowgreen;
+    background-color: rgb(154, 205, 50);
+    border-radius: 100%;
+    &.flash {
+        background-color: rgb(158, 164, 112);
+        border-radius: 100%;
+    }
 }

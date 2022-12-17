@@ -1,0 +1,23 @@
+html {
+    font-family: Tahoma;
+    font-size: 16px;
+}
+
+li {
+    margin: 10px 0;
+}
+
+li:first-child {
+    font-family: Verdana;
+    color: orange;
+}
+
+li:nth-child(2) {
+    font-family: Impact;
+    color: red;
+}
+
+li:nth-child(3) {
+    font-family: Georgia;
+    color: pink;
+}

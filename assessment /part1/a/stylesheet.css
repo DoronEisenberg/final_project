@@ -1,0 +1,18 @@
+#cat1 {
+    border: 3px solid blue;
+}
+
+#cat2 {
+    float: right;
+    border: 3px solid #a9a9a9;
+}
+
+#cat3 {
+    border: 3px solid orange;
+}
+
+#cat3div {
+    width: 150px;
+    margin: auto;
+
+}
