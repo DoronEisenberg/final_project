@@ -2,17 +2,6 @@
     text-align: center;
 }
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
 .App-header {
     background-color: #282c34;
     min-height: 100vh;
@@ -28,96 +17,128 @@
     color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-////////////////@extend
-///
 .ColorKeyboard {
-    height: 200px;
-    width: 200px;
+    height: 300px;
+    width: 100px;
 }
 
-.keyboardWrapper {
+.cardWrapper {
     display: flex;
-    flex-wrap: wrap;
-    // width: 400px;
+    width: 400px;
+    // flex-wrap: wrap;
 }
 
 .startButton {
-    position: absolute;
-    background-color: #82a8c0;
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
+    background-color: #222;
+    border-radius: 4px;
+    border-style: none;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Farfetch Basis", "Helvetica Neue", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
+    min-height: 44px;
+    min-width: 10px;
+    outline: none;
+    overflow: hidden;
+    padding: 9px 20px 8px;
+    position: relative;
+    text-align: center;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
 }
+
+.button-31:hover,
+.button-31:focus {
+    opacity: 0.75;
+}
+
 .score {
     position: absolute;
-
-    height: 50px;
-    width: 50px;
-    background-color: #282c34;
+    width: 100px;
+    height: 100px;
+    background-color: black;
     border-radius: 50%;
     line-height: 100px;
     font-size: 50px;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
 }
 
 .lost {
-    position: absolute;
-    height: 400px;
-    width: 400px;
-    border-radius: 50%;
-    line-height: 50px;
-    font-size: 30px;
-    justify-content: center;
-}
+    /* Modify size here: */
+    --size: 500px;
+    --thickness: calc(var(--size) * 0.1);
 
-.flash.flash {
+    position: relative;
+    width: var(--size);
+    height: calc(var(--size) * 0.47);
+    box-sizing: content-box;
+
+    content: "";
+    box-sizing: content-box;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: calc(var(--size) * 0.28);
+    height: calc(var(--size) * 0.28);
+    border: var(--thickness) solid #333;
+    border-radius: 50px 50px 0 50px;
+    transform: rotate(-45deg);
+
+    left: calc(60% + var(--thickness));
+    right: 0;
+    border-radius: 50px 50px 50px 0;
+    transform: rotate(40deg);
+
     border: 3px solid white;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-.purple {
-    background-color: purple;
-    border-radius: 50%;
+.orange {
+    background-color: #e69232;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     &.flash {
-        background-color: rgb(186, 120, 172);
-        border-radius: 50%;
+        background-color: #e6c39e;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
     }
 }
 
-.palevioletred {
-    background-color: rgb(216, 112, 147);
-    border-radius: 100%;
+.pink {
+    background-color: #e627cb;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     &.flash {
-        background-color: rgb(194, 157, 186);
-        border-radius: 100%;
+        background-color: #e693e1;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
     }
 }
 
-.turquoise {
-    background-color: rgb(64, 224, 208);
-    border-radius: 50%;
+.sky {
+    background-color: #3eb3e6;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     &.flash {
-        background-color: rgb(125, 155, 148);
-        border-radius: 50%;
+        background-color: #aad6e6;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
     }
 }
 
-.yellowgreen {
-    background-color: rgb(154, 205, 50);
-    border-radius: 100%;
+.green {
+    background-color: #5ae62c;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+
     &.flash {
-        background-color: rgb(158, 164, 112);
-        border-radius: 100%;
+        background-color: #afe697;
+        box-shadow: rgba(0, 0, 0, 0.2) 0px 60px 40px -7px;
     }
 }

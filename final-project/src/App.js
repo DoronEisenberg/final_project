@@ -5,7 +5,8 @@ import timeout from "./utils/util";
 
 function App() {
     const [isOn, setIsOn] = useState(false);
-    const colorList = ["purple", "palevioletred", "turquoise", "yellowgreen"];
+
+    const colorList = ["orange", "pink", "sky", "green"];
 
     const initPlay = {
         isDisplay: false,
@@ -33,9 +34,8 @@ function App() {
     useEffect(() => {
         if (isOn && play.isDisplay) {
             let newColor = colorList[Math.floor(Math.random() * 4)];
+
             const copyColors = [...play.colors];
-            console.log("newColor", newColor); ////
-            console.log("copyColors", copyColors); /////
             copyColors.push(newColor);
             setPlay({ ...play, colors: copyColors });
         }
@@ -48,16 +48,13 @@ function App() {
     }, [isOn, play.isDisplay, play.colors.length]);
 
     async function displayColors() {
-        console.log("called display colors", play.colors);
         await timeout(1000);
-
         for (let i = 0; i < play.colors.length; i++) {
             setFlashColor(play.colors[i]);
-            console.log("play.Color", play.colors[i]); /////
             await timeout(1000);
             setFlashColor("");
             await timeout(1000);
-            //////
+
             if (i === play.colors.length - 1) {
                 const copyColors = [...play.colors];
 
@@ -67,12 +64,11 @@ function App() {
                     userPlay: true,
                     userColors: copyColors.reverse(),
                 });
-                ///////
             }
         }
     }
 
-    async function keyboardClickHandle(color) {
+    async function cardClickHandle(color) {
         if (!play.isDisplay && play.userPlay) {
             const copyUserColors = [...play.userColors];
             const lastColor = copyUserColors.pop();
@@ -80,6 +76,7 @@ function App() {
 
             if (color === lastColor) {
                 if (copyUserColors.length) {
+                    setPlay({ ...play, userColors: copyUserColors });
                 } else {
                     await timeout(1000);
                     setPlay({
@@ -90,7 +87,6 @@ function App() {
                         userColors: [],
                     });
                 }
-                setPlay({ ...play, userColors: copyUserColors });
             } else {
                 await timeout(1000);
                 setPlay({ ...initPlay, score: play.colors.length });
@@ -103,16 +99,17 @@ function App() {
     function closeHandle() {
         setIsOn(false);
     }
+
     return (
         <div className="App">
             <header className="App-header">
-                <div className="keyboardWrapper">
+                <div className="cardWrapper">
                     {colorList &&
                         colorList.map((v, i) => (
                             <ColorKeyboard
                                 onClick={() => {
-                                    keyboardClickHandle(v);
-                                }} ////
+                                    cardClickHandle(v);
+                                }}
                                 flash={flashColor === v}
                                 color={v}
                             ></ColorKeyboard>
@@ -120,14 +117,17 @@ function App() {
                 </div>
 
                 {isOn && !play.isDisplay && !play.userPlay && play.score && (
-                    <div className="LOST!">
-                        <div>FinalScore: {play.score}</div>
-                        <button onClick={closeHandle}>Close</button>
+                    <div className="lost">
+                        <div>
+                            {" "}
+                            Game over! <br></br>Score: {play.score}
+                        </div>
+                        <button onClick={closeHandle}>Start Again</button>
                     </div>
                 )}
                 {!isOn && !play.score && (
                     <button onClick={startHandle} className="startButton">
-                        Start
+                        Play
                     </button>
                 )}
                 {isOn && (play.isDisplay || play.userPlay) && (
