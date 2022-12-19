@@ -2,6 +2,10 @@ import "./App.scss";
 import { useState, useEffect } from "react";
 import ColorKeyboard from "./components/ColorKeyboard";
 import timeout from "./utils/util";
+import green from "./audiobuttons/ChurchOrgan08.mp3";
+import sky from "./audiobuttons/ChurchOrgan09.mp3";
+import pink from "./audiobuttons/ChurchOrgan10.mp3";
+import orange from "./audiobuttons/ChurchOrgan11.mp3";
 
 function App() {
     const [isOn, setIsOn] = useState(false);
@@ -15,6 +19,18 @@ function App() {
         userPlay: false,
         userColors: [],
     };
+
+    function playFirst(v) {
+        if (v === "green") {
+            new Audio(green).play();
+        } else if (v === "orange") {
+            new Audio(orange).play();
+        } else if (v === "sky") {
+            new Audio(sky).play();
+        } else if (v === "green") {
+            new Audio(green).play();
+        }
+    }
 
     const [play, setPlay] = useState(initPlay);
     const [flashColor, setFlashColor] = useState("");
@@ -48,10 +64,10 @@ function App() {
     }, [isOn, play.isDisplay, play.colors.length]);
 
     async function displayColors() {
-        await timeout(1000);
+        await timeout(500);
         for (let i = 0; i < play.colors.length; i++) {
             setFlashColor(play.colors[i]);
-            await timeout(1000);
+            await timeout(500);
             setFlashColor("");
             await timeout(1000);
 
@@ -106,9 +122,11 @@ function App() {
                 <div className="cardWrapper">
                     {colorList &&
                         colorList.map((v, i) => (
+                            // console.log("v", v),
                             <ColorKeyboard
                                 onClick={() => {
                                     cardClickHandle(v);
+                                    playFirst(v); //// sound.play
                                 }}
                                 flash={flashColor === v}
                                 color={v}
