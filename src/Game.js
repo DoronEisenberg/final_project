@@ -3,10 +3,11 @@ import "./App.scss";
 import { useState, useEffect } from "react";
 import ColorKeyboard from "./components/ColorKeyboard";
 import timeout from "./utils/util";
-import green from "./audiobuttons/BlipWater.mp3";
-import sky from "./audiobuttons/ChurchOrgan09.mp3";
-import pink from "./audiobuttons/ChurchOrgan10.mp3";
-import orange from "./audiobuttons/ChurchOrgan11.mp3";
+import green from "./audiobuttons/StringsPhased1.mp3";
+import sky from "./audiobuttons/StringsPhased2.mp3";
+import pink from "./audiobuttons/StringsPhased3.mp3";
+import orange from "./audiobuttons/StringsPhased4.mp3";
+import theend from "./audiobuttons/Funny.mp3";
 
 function Game() {
     const [isOn, setIsOn] = useState(false);
@@ -23,7 +24,7 @@ function Game() {
 
     const [play, setPlay] = useState(initPlay);
     const [flashColor, setFlashColor] = useState("");
-
+    ///////   Here the is sound function  is called
     function playFirst(v) {
         if (v === "orange") {
             new Audio(orange).play();
@@ -33,7 +34,12 @@ function Game() {
             new Audio(sky).play();
         } else if (v === "green") {
             new Audio(green).play();
+        } else if (v === "theend") {
+            new Audio(theend).play();
         }
+    }
+    function gameOver(theend) {
+        new Audio(theend).play();
     }
 
     function startHandle() {
@@ -75,9 +81,9 @@ function Game() {
     async function displayColors() {
         await timeout(1000);
         for (let i = 0; i < play.colors.length; i++) {
-            setFlashColor(play.colors[i]);
-            playFirst(play.colors[i]);
-            await timeout(300);
+            setFlashColor(play.colors[i]); ///// when flash play color is changed
+            playFirst(play.colors[i]); ///// when flash play sound
+            await timeout(300); //// time delay for flash play
             setFlashColor("");
             await timeout(300);
 
@@ -94,13 +100,13 @@ function Game() {
         }
     }
 
-    async function cardClickHandle(color) {
+    async function keyboardClickHandle(color) {
         if (!play.isDisplay && play.userPlay) {
             const copyUserColors = [...play.userColors];
             const lastColor = copyUserColors.pop();
             setFlashColor(color);
             console.log(
-                "inside cardClickHandle",
+                "inside keyboardClickHandle",
                 play.userColors,
                 color,
                 lastColor
@@ -116,6 +122,7 @@ function Game() {
                         isDisplay: true,
                         userPlay: false,
                         score: play.colors.length,
+                        gameover: true, ////
                         userColors: [],
                     });
                 }
@@ -133,15 +140,15 @@ function Game() {
     }
 
     return (
-        <div className="App">
-            <header className="App-header">
-                <div className="cardWrapper">
+        <div className="Game">
+            <header className="Game-header">
+                <div className="gameWrapper">
                     {colorList &&
                         colorList.map((v, i) => (
                             // console.log("v", v),
                             <ColorKeyboard
                                 onClick={() => {
-                                    cardClickHandle(v);
+                                    keyboardClickHandle(v);
                                     playFirst(v); //// sound.play
                                 }}
                                 flash={flashColor === v}
@@ -154,9 +161,11 @@ function Game() {
                 {isOn && !play.isDisplay && !play.userPlay && play.score && (
                     <div className="lost">
                         <div>
-                            {" "}
+                            {""}
                             Game over! <br></br>Score: {play.score}
                         </div>
+                        <div>{gameOver(theend)}</div>{" "}
+                        {/* play sound Game over*/}
                         <button onClick={closeHandle}>Start Again</button>
                     </div>
                 )}
